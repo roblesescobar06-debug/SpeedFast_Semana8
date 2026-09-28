@@ -1,7 +1,7 @@
 package modelo;
 
 /**
- * Representa un repartidor almacenado en la base de datos.
+ * Representa un repartidor almacenado en la tabla repartidores.
  */
 public class Repartidor {
 
@@ -24,10 +24,11 @@ public class Repartidor {
     public void setNombre(String nombre) { this.nombre = nombre; }
 
     /**
-     * Se muestra en los JComboBox de la interfaz.
+     * Texto legible para los JComboBox: "id - nombre".
+     * Internamente el combo conserva el objeto completo (y su id).
      */
     @Override
     public String toString() {
-        return nombre;
+        return id + " - " + nombre;
     }
 }

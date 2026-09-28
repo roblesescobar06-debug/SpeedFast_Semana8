@@ -7,7 +7,7 @@ import java.sql.SQLException;
 /**
  * Gestiona la conexión con la base de datos MySQL mediante JDBC.
  */
-public class ConexionDB {
+public class ConexionBD {
 
     private static final String URL = "jdbc:mysql://localhost:3306/speedfast_db";
     private static final String USER = "root";

@@ -1,89 +1,68 @@
 package vista;
 
-import modelo.ControladorDeEnvios;
-
 import javax.swing.*;
 import java.awt.*;
 
 /**
  * Ventana principal del sistema SpeedFast.
- * Contiene el controlador común que comparten todas las ventanas.
+ * Organiza la gestión de Repartidores, Pedidos y Entregas en pestañas.
  */
 public class VentanaPrincipal extends JFrame {
 
-    private ControladorDeEnvios controlador;
+    private final PanelRepartidores panelRepartidores = new PanelRepartidores();
+    private final PanelPedidos panelPedidos = new PanelPedidos();
+    private final PanelEntregas panelEntregas = new PanelEntregas();
 
     public VentanaPrincipal() {
-        controlador = new ControladorDeEnvios();
-
-        setTitle("SpeedFast - Sistema de gestión de entregas");
-        setSize(460, 420);
+        setTitle("SpeedFast - Gestión de pedidos y entregas");
+        setSize(1000, 620);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setResizable(false);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setLayout(new BorderLayout());
 
         // ----- Encabezado -----
-        JPanel panelEncabezado = new JPanel(new GridLayout(2, 1));
-        panelEncabezado.setBorder(BorderFactory.createEmptyBorder(20, 10, 10, 10));
-
         JLabel lblTitulo = new JLabel("SpeedFast", SwingConstants.CENTER);
-        lblTitulo.setFont(new Font("SansSerif", Font.BOLD, 26));
+        lblTitulo.setFont(new Font("SansSerif", Font.BOLD, 24));
+        lblTitulo.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
 
-        JLabel lblSubtitulo = new JLabel("Gestión de pedidos y entregas", SwingConstants.CENTER);
-        lblSubtitulo.setFont(new Font("SansSerif", Font.PLAIN, 14));
-        lblSubtitulo.setForeground(new Color(90, 90, 90));
+        // ----- Pestañas -----
+        JTabbedPane pestanas = new JTabbedPane();
+        pestanas.addTab("Repartidores", panelRepartidores);
+        pestanas.addTab("Pedidos", panelPedidos);
+        pestanas.addTab("Entregas", panelEntregas);
 
-        panelEncabezado.add(lblTitulo);
-        panelEncabezado.add(lblSubtitulo);
-
-        // ----- Botones del menú -----
-        JPanel panelBotones = new JPanel(new GridLayout(4, 1, 10, 12));
-        panelBotones.setBorder(BorderFactory.createEmptyBorder(10, 60, 10, 60));
-
-        JButton btnRegistrar = crearBoton("Registrar pedido");
-        JButton btnListar = crearBoton("Listar pedidos");
-        JButton btnAsignar = crearBoton("Asignar repartidor / Iniciar entrega");
-        JButton btnSalir = crearBoton("Salir");
-
-        panelBotones.add(btnRegistrar);
-        panelBotones.add(btnListar);
-        panelBotones.add(btnAsignar);
-        panelBotones.add(btnSalir);
-
-        // ----- Navegación entre ventanas -----
-        btnRegistrar.addActionListener(e -> new VentanaRegistroPedido(controlador).setVisible(true));
-        btnListar.addActionListener(e -> new VentanaListaPedidos().setVisible(true));
-        btnAsignar.addActionListener(e -> new VentanaAsignarRepartidor(controlador).setVisible(true));
-        btnSalir.addActionListener(e -> confirmarSalida());
+        // Al cambiar de pestaña se refrescan tablas y combos con los datos actuales de la BD
+        pestanas.addChangeListener(e -> {
+            Component actual = pestanas.getSelectedComponent();
+            if (actual == panelEntregas) {
+                panelEntregas.recargarCombos();
+                panelEntregas.cargarTabla();
+            } else if (actual == panelPedidos) {
+                panelPedidos.cargarTabla();
+            } else if (actual == panelRepartidores) {
+                panelRepartidores.cargarTabla();
+            }
+        });
 
         // ----- Pie -----
-        JLabel lblPie = new JLabel("Desarrollo Orientado a Objetos II - Semana 7", SwingConstants.CENTER);
+        JLabel lblPie = new JLabel("Desarrollo Orientado a Objetos II - Semana 8", SwingConstants.CENTER);
         lblPie.setFont(new Font("SansSerif", Font.ITALIC, 11));
-        lblPie.setForeground(new Color(120, 120, 120));
-        lblPie.setBorder(BorderFactory.createEmptyBorder(5, 10, 15, 10));
+        lblPie.setBorder(BorderFactory.createEmptyBorder(5, 10, 8, 10));
 
-        add(panelEncabezado, BorderLayout.NORTH);
-        add(panelBotones, BorderLayout.CENTER);
+        add(lblTitulo, BorderLayout.NORTH);
+        add(pestanas, BorderLayout.CENTER);
         add(lblPie, BorderLayout.SOUTH);
 
+        // Confirmación al cerrar
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                if (Mensajes.confirmar(VentanaPrincipal.this, "¿Deseas salir del sistema?")) {
+                    System.exit(0);
+                }
+            }
+        });
+
         setVisible(true);
-    }
-
-    private JButton crearBoton(String texto) {
-        JButton boton = new JButton(texto);
-        boton.setFont(new Font("SansSerif", Font.PLAIN, 14));
-        boton.setFocusPainted(false);
-        return boton;
-    }
-
-    private void confirmarSalida() {
-        int opcion = JOptionPane.showConfirmDialog(this,
-                "¿Deseas salir del sistema?",
-                "Salir",
-                JOptionPane.YES_NO_OPTION);
-        if (opcion == JOptionPane.YES_OPTION) {
-            System.exit(0);
-        }
     }
 }

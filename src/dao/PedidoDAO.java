@@ -1,4 +1,5 @@
 package dao;
+
 import modelo.Pedido;
 
 import java.sql.Connection;
@@ -10,69 +11,115 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Operaciones de base de datos sobre la tabla pedido.
+ * DAO de la tabla pedidos.
+ * Implementa el CRUD completo y un listado con filtros por estado y tipo.
  */
 public class PedidoDAO {
 
-    public int guardar(Pedido pedido, String tipo) {
-        String sql = "INSERT INTO pedido (direccion, tipo, estado) VALUES (?, ?, ?)";
-        int idGenerado = -1;
+    /**
+     * Inserta un pedido y le asigna el id generado por MySQL.
+     */
+    public boolean create(Pedido pedido) throws SQLException {
+        String sql = "INSERT INTO pedidos (direccion, tipo, estado) VALUES (?, ?, ?)";
 
-        try (Connection con = ConexionDB.conectar();
+        try (Connection con = ConexionBD.conectar();
              PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, pedido.getDireccionEntrega());
-            ps.setString(2, tipo);
-            ps.setString(3, pedido.getEstado() == null ? "PENDIENTE" : pedido.getEstado());
-            ps.executeUpdate();
+            ps.setString(2, pedido.getTipo());
+            ps.setString(3, pedido.getEstado());
+            int filas = ps.executeUpdate();
 
             try (ResultSet rs = ps.getGeneratedKeys()) {
                 if (rs.next()) {
-                    idGenerado = rs.getInt(1);
-                    pedido.setIdPedido(idGenerado);
+                    pedido.setIdPedido(rs.getInt(1));
                 }
             }
-        } catch (SQLException e) {
-            System.out.println("Error al guardar el pedido: " + e.getMessage());
+            return filas > 0;
         }
-        return idGenerado;
     }
 
-    public List<Object[]> listarTodos() {
-        String sql = "SELECT id, direccion, tipo, estado FROM pedido ORDER BY id";
-        List<Object[]> filas = new ArrayList<>();
+    /**
+     * Retorna todos los pedidos.
+     */
+    public List<Pedido> readAll() throws SQLException {
+        return readByFiltro(null, null);
+    }
 
-        try (Connection con = ConexionDB.conectar();
-             PreparedStatement ps = con.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
+    /**
+     * Retorna los pedidos filtrados por estado y/o tipo.
+     * Si un filtro es null, no se aplica.
+     */
+    public List<Pedido> readByFiltro(String estado, String tipo) throws SQLException {
+        StringBuilder sql = new StringBuilder("SELECT id, direccion, tipo, estado FROM pedidos WHERE 1=1");
+        if (estado != null) {
+            sql.append(" AND estado = ?");
+        }
+        if (tipo != null) {
+            sql.append(" AND tipo = ?");
+        }
+        sql.append(" ORDER BY id");
 
-            while (rs.next()) {
-                filas.add(new Object[]{
-                        rs.getInt("id"),
-                        rs.getString("direccion"),
-                        rs.getString("tipo"),
-                        rs.getString("estado")
-                });
+        List<Pedido> lista = new ArrayList<>();
+
+        try (Connection con = ConexionBD.conectar();
+             PreparedStatement ps = con.prepareStatement(sql.toString())) {
+
+            int indice = 1;
+            if (estado != null) {
+                ps.setString(indice++, estado);
             }
-        } catch (SQLException e) {
-            System.out.println("Error al listar los pedidos: " + e.getMessage());
+            if (tipo != null) {
+                ps.setString(indice, tipo);
+            }
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    lista.add(mapear(rs));
+                }
+            }
         }
-        return filas;
+        return lista;
     }
 
-    public boolean actualizarEstado(int idPedido, String nuevoEstado) {
-        String sql = "UPDATE pedido SET estado = ? WHERE id = ?";
+    /**
+     * Actualiza dirección, tipo y estado de un pedido existente.
+     */
+    public boolean update(Pedido pedido) throws SQLException {
+        String sql = "UPDATE pedidos SET direccion = ?, tipo = ?, estado = ? WHERE id = ?";
 
-        try (Connection con = ConexionDB.conectar();
+        try (Connection con = ConexionBD.conectar();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setString(1, nuevoEstado);
-            ps.setInt(2, idPedido);
+            ps.setString(1, pedido.getDireccionEntrega());
+            ps.setString(2, pedido.getTipo());
+            ps.setString(3, pedido.getEstado());
+            ps.setInt(4, pedido.getIdPedido());
             return ps.executeUpdate() > 0;
-
-        } catch (SQLException e) {
-            System.out.println("Error al actualizar el estado: " + e.getMessage());
-            return false;
         }
+    }
+
+    /**
+     * Elimina un pedido por su id.
+     * Si tiene entregas asociadas, MySQL lanza una excepción de integridad.
+     */
+    public boolean delete(int id) throws SQLException {
+        String sql = "DELETE FROM pedidos WHERE id = ?";
+
+        try (Connection con = ConexionBD.conectar();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+            return ps.executeUpdate() > 0;
+        }
+    }
+
+    /**
+     * Convierte la fila actual del ResultSet en la subclase de Pedido correcta.
+     */
+    private Pedido mapear(ResultSet rs) throws SQLException {
+        Pedido pedido = Pedido.crear(rs.getString("tipo"), rs.getInt("id"), rs.getString("direccion"));
+        pedido.setEstado(rs.getString("estado"));
+        return pedido;
     }
 }

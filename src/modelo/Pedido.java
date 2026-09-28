@@ -17,7 +17,7 @@ public abstract class Pedido {
     protected String direccionEntrega;
     protected double distanciaKm;
     protected String repartidor;
-    protected String estado = "Pendiente";
+    protected String estado = "PENDIENTE";
 
     /**
      * Constructor de la clase abstracta.
@@ -44,13 +44,42 @@ public abstract class Pedido {
     }
 
     /**
-     * Método ABSTRACTO: no tiene cuerpo aquí.
-     * Cada subclase está OBLIGADA a implementarlo con su propia fórmula
+     * Método ABSTRACTO: cada subclase implementa su propia fórmula
      * de cálculo del tiempo de entrega.
      *
      * @return el tiempo estimado de entrega en minutos
      */
     public abstract int calcularTiempoEntrega();
+
+    /**
+     * Método ABSTRACTO: cada subclase indica su tipo tal como se guarda
+     * en la base de datos (COMIDA, ENCOMIENDA o EXPRESS).
+     *
+     * @return tipo del pedido
+     */
+    public abstract String getTipo();
+
+    /**
+     * Método de fábrica: crea la subclase correcta según el tipo
+     * leído desde la base de datos o elegido en la interfaz.
+     *
+     * @param tipo      COMIDA, ENCOMIENDA o EXPRESS
+     * @param id        identificador del pedido
+     * @param direccion dirección de entrega
+     * @return instancia de PedidoComida, PedidoEncomienda o PedidoExpress
+     */
+    public static Pedido crear(String tipo, int id, String direccion) {
+        switch (tipo) {
+            case "COMIDA":
+                return new PedidoComida(id, direccion, 0);
+            case "ENCOMIENDA":
+                return new PedidoEncomienda(id, direccion, 0);
+            case "EXPRESS":
+                return new PedidoExpress(id, direccion, 0);
+            default:
+                throw new IllegalArgumentException("Tipo de pedido no válido: " + tipo);
+        }
+    }
 
     /**
      * Método que se SOBRESCRIBE en cada subclase con su lógica de asignación.
@@ -68,6 +97,7 @@ public abstract class Pedido {
         this.repartidor = nombre;
         System.out.println("Repartidor asignado manualmente: " + nombre);
     }
+
     // ------------------- Getters y Setters -------------------
 
     public int getIdPedido() {
@@ -93,8 +123,6 @@ public abstract class Pedido {
     public void setDistanciaKm(double distanciaKm) {
         this.distanciaKm = distanciaKm;
     }
-    // ===== Getters y setters para la interfaz gráfica =====
-
 
     public String getRepartidor() {
         return repartidor;
@@ -110,5 +138,13 @@ public abstract class Pedido {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    /**
+     * Texto legible para los JComboBox: "id - dirección".
+     */
+    @Override
+    public String toString() {
+        return idPedido + " - " + direccionEntrega;
     }
 }

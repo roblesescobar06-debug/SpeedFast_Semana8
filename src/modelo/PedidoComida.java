@@ -40,4 +40,12 @@ public class PedidoComida extends Pedido {
         this.repartidor = "Repartidor en moto (Comida)";
         System.out.println("Pedido de comida asignado automáticamente a: " + this.repartidor);
     }
+
+    /**
+     * Tipo del pedido tal como se guarda en la base de datos.
+     */
+    @Override
+    public String getTipo() {
+        return "COMIDA";
+    }
 }

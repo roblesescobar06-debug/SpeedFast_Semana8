@@ -45,4 +45,12 @@ public class PedidoExpress extends Pedido {
         this.repartidor = "Repartidor express prioritario";
         System.out.println("Pedido express asignado automáticamente a: " + this.repartidor);
     }
+
+    /**
+     * Tipo del pedido tal como se guarda en la base de datos.
+     */
+    @Override
+    public String getTipo() {
+        return "EXPRESS";
+    }
 }

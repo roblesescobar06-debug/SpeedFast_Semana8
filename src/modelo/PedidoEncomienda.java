@@ -41,4 +41,12 @@ public class PedidoEncomienda extends Pedido {
         this.repartidor = "Repartidor en camioneta (Encomienda)";
         System.out.println("Encomienda asignada automáticamente a: " + this.repartidor);
     }
+
+    /**
+     * Tipo del pedido tal como se guarda en la base de datos.
+     */
+    @Override
+    public String getTipo() {
+        return "ENCOMIENDA";
+    }
 }

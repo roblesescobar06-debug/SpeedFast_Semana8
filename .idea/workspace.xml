@@ -1,8 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1eea317-4e57-4ba9-a723-46dbb9e13263" name="Changes" comment="Merge remote-tracking branch 'origin/master'">
+    <list default="true" id="c1eea317-4e57-4ba9-a723-46dbb9e13263" name="Changes" comment="Agregar script SQL de la base de datos speedfast_db">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_j.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/vista/Mensajes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/vista/PanelEntregas.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/vista/PanelPedidos.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/vista/PanelRepartidores.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_j_26_7_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_j_26_7_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpeedFast.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SpeedFast.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/speedfast_db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/speedfast_db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/EntregaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/EntregaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/PedidoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/PedidoDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/RepartidorDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/RepartidorDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/TestDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/Entrega.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Entrega.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/Pedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Pedido.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/PedidoComida.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/PedidoComida.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/PedidoEncomienda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/PedidoEncomienda.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/PedidoExpress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/PedidoExpress.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/Repartidor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Repartidor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/VentanaAsignarRepartidor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/VentanaListaPedidos.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/VentanaPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/VentanaPrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/VentanaRegistroPedido.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/VentanaRegistroRepartidor.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,30 +75,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.ConexionDB.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TestDAO.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.ConexionBD.executor": "Run",
+    "Application.ConexionDB.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.TestDAO.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.24374.151" />
-        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.24374.151" />
+        <option value="bundled-jdk-30f59d01ecdd-a203e0a19954-intellij.indexing.shared.core-IU-262.10968.63" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.10968.63" />
       </set>
     </attachedChunks>
   </component>
@@ -122,7 +160,15 @@
       <option name="project" value="LOCAL" />
       <updated>1790043146590</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Agregar script SQL de la base de datos speedfast_db">
+      <option name="closed" value="true" />
+      <created>1790605074549</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1790605074549</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,23 +177,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Semana 6: interfaz gráfica Swing con registro, listado y asignación de pedidos" />
     <MESSAGE value="Merge remote-tracking branch 'origin/master'" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/master'" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-field">
-          <url>file://$PROJECT_DIR$/src/modelo/Pedido.java</url>
-          <line>18</line>
-          <properties field="repartidor" class="modelo.Pedido" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/vista/VentanaPrincipal.java</url>
-          <line>60</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Agregar script SQL de la base de datos speedfast_db" />
+    <option name="LAST_COMMIT_MESSAGE" value="Agregar script SQL de la base de datos speedfast_db" />
   </component>
 </project>

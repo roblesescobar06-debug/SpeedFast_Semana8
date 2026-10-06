@@ -1,26 +1,29 @@
-# SpeedFast – Semana 7: JDBC + MySQL
+# SpeedFast – Semana 8: CRUD con JDBC + Swing
 
-Sistema de gestión de pedidos y entregas en Java (Swing) conectado a una base de datos MySQL mediante JDBC.
-
-## Estructura
-- `modelo`: Pedido (abstracta), PedidoComida, PedidoEncomienda, PedidoExpress, Repartidor, Entrega, ControladorDeEnvios
-- `dao`: ConexionBD, PedidoDAO, RepartidorDAO, EntregaDAO, TestDAO
-- `vista`: VentanaPrincipal, VentanaRegistroPedido, VentanaListaPedidos, VentanaRegistroRepartidor, VentanaAsignarRepartidor
-- `main`: Main
+Sistema de gestión de repartidores, pedidos y entregas en Java (Swing) conectado a MySQL mediante JDBC.
 
 ## Funcionalidades
-- Registrar pedidos en la tabla `pedido` (ID generado por MySQL).
-- Registrar repartidores en la tabla `repartidor` y mostrarlos en una JTable.
-- Listar pedidos desde la base de datos en una JTable.
-- Asignar repartidor desde la tabla `repartidor`, registrar la entrega en la tabla `entrega` y actualizar el estado del pedido (Pendiente → En reparto → Entregado) usando un hilo.
+- **Repartidores:** registrar, editar, eliminar y listar.
+- **Pedidos:** registrar, editar, eliminar y listar con filtros por estado y tipo.
+- **Entregas:** registrar asociando pedido y repartidor (JComboBox cargados desde la BD), editar, eliminar y listar con filtros por pedido o repartidor.
+- Validación de campos obligatorios y formatos antes de cada operación.
+- Manejo de excepciones SQL con mensajes claros (JOptionPane).
+
+## Estructura (separación por capas)
+- `modelo`: Pedido (abstracta), PedidoComida, PedidoEncomienda, PedidoExpress, Repartidor, Entrega, interfaces y ControladorDeEnvios.
+- `dao`: ConexionBD, RepartidorDAO, PedidoDAO, EntregaDAO (create, readAll, update, delete con PreparedStatement y ResultSet).
+- `vista`: VentanaPrincipal (JTabbedPane), PanelRepartidores, PanelPedidos, PanelEntregas, Mensajes.
+- `main`: Main (punto de entrada).
 
 ## Requisitos
-- JDK 21 o superior
-- MySQL 8 con la base de datos `speedfast_db` (tablas `repartidor`, `pedido`, `entrega`)
-- Conector `mysql-connector-j` agregado como librería del proyecto
+- JDK 21 o superior.
+- MySQL Server en `localhost:3306`, usuario `root`, contraseña `speedfast2026` (configurable en `dao/ConexionBD.java`).
+- Conector MySQL incluido en la carpeta `lib`.
 
-## Instalación de la base de datos
-Ejecutar el script `speedfast_db.sql` en MySQL Workbench para crear la base de datos, sus tablas y datos de prueba.
+## Cómo ejecutar
+1. Ejecutar el script `speedfast_db.sql` en MySQL para crear la base `speedfast_db`.
+2. Abrir el proyecto en IntelliJ IDEA.
+3. Ejecutar `main/Main.java`.
 
-## Ejecución
-Ejecutar `main.Main`.
+## Autor
+Cristóbal Robles – Desarrollo Orientado a Objetos II, Duoc UC.

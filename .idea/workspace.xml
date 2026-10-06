@@ -4,34 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1eea317-4e57-4ba9-a723-46dbb9e13263" name="Changes" comment="Agregar script SQL de la base de datos speedfast_db">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_j.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/vista/Mensajes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/vista/PanelEntregas.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/vista/PanelPedidos.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/vista/PanelRepartidores.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_j_26_7_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_j_26_7_0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpeedFast.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SpeedFast.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/speedfast_db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/speedfast_db.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/EntregaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/EntregaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/PedidoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/PedidoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/RepartidorDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/RepartidorDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/TestDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/Entrega.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Entrega.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/Pedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Pedido.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/PedidoComida.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/PedidoComida.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/PedidoEncomienda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/PedidoEncomienda.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/PedidoExpress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/PedidoExpress.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/Repartidor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Repartidor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/VentanaAsignarRepartidor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/VentanaListaPedidos.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/VentanaPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/VentanaPrincipal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/VentanaRegistroPedido.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/VentanaRegistroRepartidor.java" beforeDir="false" />
-    </list>
+    <list default="true" id="c1eea317-4e57-4ba9-a723-46dbb9e13263" name="Changes" comment="Semana 8: CRUD completo con DAO, interfaz Swing, validaciones y manejo de errores" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -178,6 +151,8 @@
     <MESSAGE value="Semana 6: interfaz gráfica Swing con registro, listado y asignación de pedidos" />
     <MESSAGE value="Merge remote-tracking branch 'origin/master'" />
     <MESSAGE value="Agregar script SQL de la base de datos speedfast_db" />
-    <option name="LAST_COMMIT_MESSAGE" value="Agregar script SQL de la base de datos speedfast_db" />
+    <MESSAGE value="Registro de repartidores desde la interfaz y renombre de ConexionBD" />
+    <MESSAGE value="Semana 8: CRUD completo con DAO, interfaz Swing, validaciones y manejo de errores" />
+    <option name="LAST_COMMIT_MESSAGE" value="Semana 8: CRUD completo con DAO, interfaz Swing, validaciones y manejo de errores" />
   </component>
 </project>
